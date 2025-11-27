@@ -5,7 +5,7 @@ import os
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-PROJECT_NAME = os.getenv("PROJECT_NAME", "docker-python")
+PROJECT_NAME = os.getenv("PROJECT_NAME", "phona")
 SOURCE_VERSION = os.getenv("SOURCE_VERSION", "1.0.0")
 
 # -- Project information -----------------------------------------------------

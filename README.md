@@ -1,10 +1,14 @@
-# Phona
+# Phona – English Pronunciation Visualizer
+
+Phona is a tool that helps learners see and understand their English pronunciation.
+By recording a short utterance, the service analyzes your speech, converts it into IPA, and highlights which sounds match the target pronunciation and which need improvement.
+
+Why the name “Phona”?
+
+The name comes from the root “phon-”, meaning sound or voice, found in words like phonetics and phoneme.
+The simple “-a” ending keeps it friendly and approachable—just like the goal of the project:
+making accurate pronunciation accessible, visual, and easy to learn.
 This is a my own broiler template for python.
-- [docker-python-handson](#docker-python-handson)
-    - [docker commands](#docker-commands)
-    - [start](#start)
-    - [containers](#containers)
-    - [vscode settings](#vscode-settings)
 
 ### docker commands
 ```bash
