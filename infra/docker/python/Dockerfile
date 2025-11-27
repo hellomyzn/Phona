@@ -21,7 +21,7 @@ RUN pip install poetry --no-cache-dir
 RUN poetry config virtualenvs.create false
 
 # コピーして依存関係だけインストール
-COPY ${PROJECT_DIR}/pyproject.toml ${PROJECT_DIR}/poetry.lock ./
+COPY ${PROJECT_DIR}/pyproject.toml ./
 RUN if [ -f pyproject.toml ]; then poetry install --no-root; fi
 
 # ------------------------

@@ -21,7 +21,7 @@ RUN pip install poetry --no-cache-dir
 RUN poetry config virtualenvs.create false
 
 # コピーして依存関係だけインストール
-COPY ${PROJECT_DIR}/pyproject.toml ${PROJECT_DIR}/poetry.lock ./
+COPY ${PROJECT_DIR}/pyproject.toml  ./
 RUN if [ -f pyproject.toml ]; then poetry install --no-root --with dev; fi
 
 # ------------------------
@@ -37,7 +37,6 @@ ARG WORKDIR
 ARG PYTHONPATH
 ARG POETRY_HOME
 ARG PIP_HOME
-ARG SSH_HOME
 
 RUN mkdir -p ${WORKDIR}
 WORKDIR ${WORKDIR}
@@ -46,7 +45,6 @@ ENV TZ=${TZ}
 ENV PYTHONPATH=${PYTHONPATH}
 ENV POETRY_HOME=${POETRY_HOME}
 ENV PIP_HOME=${PIP_HOME}
-ENV SSH_HOME=${SSH_HOME}
 ENV PATH=/home/${USER_NAME}/.local/bin:$PATH
 
 # 任意: ユーザー作成
@@ -56,11 +54,10 @@ RUN groupadd -g ${GID} ${GROUP_NAME} && \
     echo "${USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # create necessary dirs
-RUN mkdir -p ${PYTHONPATH} ${POETRY_HOME} ${PIP_HOME} ${SSH_HOME} && \
-    chown -R ${USER_NAME}:${GROUP_NAME} ${PYTHONPATH} ${POETRY_HOME} ${PIP_HOME} ${SSH_HOME}
+RUN mkdir -p ${PYTHONPATH} ${POETRY_HOME} ${PIP_HOME} && \
+    chown -R ${USER_NAME}:${GROUP_NAME} ${PYTHONPATH} ${POETRY_HOME} ${PIP_HOME}
 
 COPY --chown=${UID}:${GID} .devcontainer/infra/docker/python/docker-entrypoint.sh /docker-entrypoint.sh
-COPY --chown=${UID}:${GID} .devcontainer/infra/docker/ssh-stub/ssh/id_rsa ${SSH_HOME}
 RUN chmod 755 /docker-entrypoint.sh
 
 # Poetryをインストール
